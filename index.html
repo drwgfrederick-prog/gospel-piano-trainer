@@ -1,8 +1,19 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gospel Piano Trainer V28 • Acoustic Piano</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gospel Piano Trainer V35 • Custom Keys and Clean Keyboard</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#1c2940;background:#f2f5fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1080px;margin:auto;padding:16px 16px 50px}header{background:linear-gradient(115deg,#172d50,#315d8b);color:#fff;padding:24px;border-radius:18px}h1{margin:0;font-size:clamp(24px,4vw,34px)}header p{margin:8px 0 0;color:#e3ebf8}h2{font-size:20px;margin:0 0 14px}.panel{background:white;border:1px solid #dce3ee;border-radius:16px;padding:19px;margin-top:16px}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.small{font-size:13px;color:#596980}.hint{font-size:14px;color:#4e5e72}.label{font-weight:700;font-size:13px;display:block;margin-bottom:6px}select,button,input{font:inherit}select,button,input[type=number]{border:1px solid #bfcbdc;border-radius:9px;padding:10px;background:white;color:#1c2940}button{cursor:pointer}button.primary,.chip.on{background:#205aa8;border-color:#205aa8;color:#fff}button:disabled{opacity:.45;cursor:not-allowed}.chip{min-width:57px;padding:10px}.chips{display:flex;gap:7px;flex-wrap:wrap}.muted{color:#5d6b80}.prompt{font-size:clamp(20px,3vw,27px);font-weight:750;margin:12px 0}.feedback{padding:14px;background:#edf4ff;border-radius:10px;min-height:56px;line-height:1.55}.stat{display:inline-block;background:#e8eff8;border-radius:8px;padding:7px 10px;margin:4px 6px 4px 0;font-size:14px}.keyboard{display:flex;height:190px;position:relative;margin:16px 0;max-width:900px;user-select:none}.white{flex:1;border:1px solid #8392a8;border-radius:0 0 6px 6px;background:linear-gradient(#fff,#e7ebf2);display:flex;justify-content:center;align-items:flex-end;padding-bottom:9px;font-size:11px;cursor:pointer}.black{position:absolute;top:0;height:61%;width:4.5%;background:#1b2534;color:white;border-radius:0 0 5px 5px;z-index:1;display:flex;justify-content:center;align-items:flex-end;padding-bottom:6px;font-size:10px;cursor:pointer}.white.active,.black.active{background:#75c8a4}.white.error,.black.error{background:#efaaa6}.songs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}.song{border:1px solid #d7e0ed;border-radius:10px;padding:12px;text-align:left;min-height:90px}.song.on{outline:2px solid #205aa8;background:#eef5ff}.song strong{display:block}.song span{font-size:12px;color:#5a6980}.tag{display:inline-block;font-size:11px;background:#e4edf8;padding:3px 7px;border-radius:12px;margin-top:7px}.hidden{display:none!important}.toggle{display:inline-flex;gap:8px;align-items:center;margin:8px 12px 8px 0}.meter{height:9px;background:#dce5f2;border-radius:8px;overflow:hidden}.meter>div{height:100%;background:#287ab4;width:0%}.foot{margin-top:20px;font-size:13px;color:#596980;line-height:1.5}button:focus-visible,select:focus-visible{outline:3px solid #d4a743;outline-offset:2px}@media(max-width:600px){.panel{padding:14px}.keyboard{height:145px}.black{font-size:8px}.white{font-size:9px}.wrap{padding:10px}}
-</style></head><body><main class="wrap"><header><h1>🎹 Gospel Piano Trainer — Version 28</h1><p>Master thirds, sixths, inversions, Nashville numbers, and harmonization—one key at a time.</p></header>
-<section class="panel"><h2>1. Choose your major keys</h2><div class="row"><label><span class="label">Key selection</span><select id="keyMode"><option value="single">One key at a time</option><option value="custom">My combination of keys</option><option value="all">All 12 keys</option></select></label><label><span class="label">Question type</span><select id="topic"><option value="sixth">Find the sixth below (third-above shortcut)</option><option value="third">Find the third above</option><option value="inverse">Interval inversions</option><option value="degree">Nashville scale degrees</option><option value="mix">Mixed interval practice</option></select></label></div><p class="small">Select a single key now; when you're ready, choose your own combination. For Nashville practice, all seven numbers are asked once before any number repeats (within each selected key).</p><div id="keyChips" class="chips"></div><p id="selectedKeys" class="small"></p></section>
-<section class="panel"><h2>2. Choose your practice activity</h2><div class="row"><label><span class="label">Activity</span><select id="activity"><option value="audio" selected>Yard Work • audio practice</option><option value="keyboard">Keyboard quiz</option><option value="timed">Timed challenge</option></select></label><label id="timerBox" class="hidden"><span class="label">Challenge duration</span><select id="duration"><option value="30">30 seconds</option><option value="60">1 minute</option><option value="180">3 minutes</option><option value="300">5 minutes</option></select></label><label id="audioBox" class="hidden"><span class="label">Audio mode</span><select id="audioMode"><option value="listen">Listen and learn</option><option value="voice">Verbal response</option></select></label><label id="keyboardPauseBox" class="hidden"><span class="label">Keyboard thinking time</span><select id="keyboardPause"><option value="2">2 seconds</option><option value="3" selected>3 seconds</option><option value="5">5 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></label><label id="pauseBox" class="hidden"><span class="label">Thinking time</span><select id="pause"><option value="3" selected>3 seconds</option><option value="5">5 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></label></div><div class="row"><label class="toggle"><input type="checkbox" id="autoNext" checked> Auto-advance audio questions</label><label class="toggle"><input type="checkbox" id="explain"> Explain answers</label></div><div class="row"><label><span class="label">Piano volume</span><input id="pianoVolume" type="range" min="20" max="100" value="85"></label><span class="small">Acoustic-style piano tone (adjust your television volume as needed)</span></div><div class="row"><label class="toggle"><input type="checkbox" id="spokenFeedback" checked> Speak correct / incorrect feedback</label></div><div class="row"><label><span class="label">Speaking voice (US English)</span><select id="speakingVoice"><option value="auto">David (United States)</option></select></label><label><span class="label">Voice depth</span><select id="voiceDepth"><option value="natural">Natural</option><option value="deep">Deep</option><option value="deeper">Deeper</option><option value="verydeep" selected>Very Deep (default)</option><option value="extra">Extra Deep (experimental)</option></select></label><button id="testVoice">Test Voice</button></div><p class="small">The default is David with a clearer Very Deep pitch. Available US voices depend on your browser and Samsung speech engine.</p><div class="row"><button id="start" class="primary">Start practice</button><button id="stop">Stop</button><button id="next">Next question</button><button id="repeat">🔊 Repeat question</button><button id="reveal">Show answer</button></div><p class="small" id="status" aria-live="polite">Ready to practice.</p><div><span class="stat" id="score">Score: 0 / 0</span><span class="stat" id="streak">Streak: 0</span><span class="stat" id="clock">Time: —</span><span class="stat" id="roundCount">Round: 0 / 21</span></div><div class="meter"><div id="progress"></div></div><div class="feedback hidden" id="roundReport" aria-live="polite" style="margin-top:12px"></div><div class="prompt" id="question">Choose your settings, then select Start practice.</div><div class="feedback" id="feedback" aria-live="polite">For a sixth below, find the third above the melody note, then play that pitch class in the octave below.</div><div id="keyboard" class="keyboard" aria-label="Clickable two-octave piano keyboard"></div><p class="small" id="kbNote">Click the correct note on the keyboard, or use Show answer. Audio mode can run without using the keyboard.</p></section>
+</style></head><body><main class="wrap"><header><h1>🎹 Gospel Piano Trainer — Version 35</h1><p>Master thirds, sixths, inversions, Nashville numbers, and harmonization—one key at a time.</p></header>
+<section class="panel"><h2>1. Choose your major keys</h2><div class="row"><label><span class="label">Key selection</span><select id="keyMode"><option value="single">One key at a time</option><option value="custom" selected>My combination of keys</option><option value="all">All 12 keys</option></select></label><label><span class="label">Question type</span><select id="topic"><option value="sixth">Find the sixth below (third-above shortcut)</option><option value="third">Find the third above</option><option value="inverse">Interval inversions</option><option value="degree" selected>Nashville scale degrees</option><option value="mix">Mixed interval practice</option></select></label></div><p class="small">Choose one key, your preferred combination, or all 12 major keys. “My combination of keys” starts with no keys selected, so you can choose exactly the ones you want. In Nashville Full Coverage practice, every number (1–7) in each selected key appears once before the combinations repeat.</p><div id="keyChips" class="chips"></div><p id="selectedKeys" class="small"></p>
+ <div class="row" style="margin-top:14px"><label id="roundLengthBox"><span class="label">Questions per session</span>
+ <select id="roundLength"><option value="full" selected>Full Coverage — all selected keys × 7</option>
+ <option value="7">7 questions</option><option value="14">14 questions</option><option value="21">21 questions</option>
+ <option value="28">28 questions</option><option value="35">35 questions (five keys)</option><option value="42">42 questions</option>
+ <option value="56">56 questions</option><option value="70">70 questions</option><option value="84">84 questions (all 12 keys)</option>
+ <option value="custom">Custom number…</option></select></label>
+ <label id="customRoundBox" class="hidden"><span class="label">Enter number of questions</span><input type="number" id="customRoundCount" min="1" max="500" step="1" value="35" style="width:125px"></label></div>
+ <p id="coverageInfo" class="small" aria-live="polite">Full Coverage: 7 questions in each selected major key.</p>
+ </section>
+<section class="panel"><h2>2. Choose your practice activity</h2><div class="row"><label><span class="label">Activity</span><select id="activity"><option value="audio" selected>Yard Work • audio practice</option><option value="keyboard">Keyboard quiz</option><option value="timed">Timed challenge</option></select></label><label id="timerBox" class="hidden"><span class="label">Challenge duration</span><select id="duration"><option value="30">30 seconds</option><option value="60">1 minute</option><option value="180">3 minutes</option><option value="300">5 minutes</option></select></label><label id="audioBox" class="hidden"><span class="label">Audio mode</span><select id="audioMode"><option value="listen">Listen and learn</option><option value="voice">Verbal response</option></select></label><label id="keyboardPauseBox" class="hidden"><span class="label">Keyboard thinking time</span><select id="keyboardPause"><option value="2">2 seconds</option><option value="3" selected>3 seconds</option><option value="5">5 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></label><label id="pauseBox" class="hidden"><span class="label">Thinking time</span><select id="pause"><option value="3" selected>3 seconds</option><option value="5">5 seconds</option><option value="10">10 seconds</option><option value="15">15 seconds</option></select></label></div><div class="row"><label class="toggle"><input type="checkbox" id="autoNext" checked> Auto-advance audio questions</label><label class="toggle"><input type="checkbox" id="explain"> Explain answers</label></div><div class="row"><label><span class="label">Piano volume</span><input id="pianoVolume" type="range" min="20" max="100" value="85"></label><span class="small">Acoustic-style piano tone (adjust your television volume as needed)</span></div><div class="row"><label class="toggle"><input type="checkbox" id="spokenFeedback" checked> Speak correct / incorrect feedback</label></div><div class="row"><label><span class="label">Speaking voice (US English)</span><select id="speakingVoice"><option value="auto">David (United States)</option></select></label><label><span class="label">Voice depth</span><select id="voiceDepth"><option value="natural">Natural</option><option value="deep">Deep</option><option value="deeper">Deeper</option><option value="verydeep" selected>Very Deep (default)</option><option value="extra">Extra Deep (experimental)</option></select></label><button id="testVoice">Test Voice</button></div><div class="row"><label class="toggle"><input type="checkbox" id="windowsSpeechFix"> Protect opening words (Windows speech fix)</label></div>
+<p class="small" id="speechFixInfo">On Windows, a brief, gentle nonverbal tone wakes the audio output, and the voice engine is prepared before the question. No question number is spoken. Each question still begins “In the key of…” This setting also works with Repeat question and Test Voice, and stays off by default on phones.</p>
+<p class="small">The default is David with a clearer Very Deep pitch. Available US voices depend on your browser and operating system.</p><div class="row"><button id="start" class="primary">Start practice</button><button id="stop">Stop</button><button id="next">Next question</button><button id="repeat">🔊 Repeat question</button><button id="reveal">Show answer</button></div><p class="small" id="status" aria-live="polite">Ready to practice.</p><div><span class="stat" id="score">Score: 0 / 0</span><span class="stat" id="streak">Streak: 0</span><span class="stat" id="clock">Time: —</span><span class="stat" id="roundCount">Round: 0 / 7</span></div><div class="meter"><div id="progress"></div></div><div class="feedback hidden" id="roundReport" aria-live="polite" style="margin-top:12px"></div><div class="prompt" id="question">Choose your settings, then select Start practice.</div><div class="feedback" id="feedback" aria-live="polite">For a sixth below, find the third above the melody note, then play that pitch class in the octave below.</div><div id="keyboard" class="keyboard" aria-label="Clickable two-octave piano keyboard"></div><p class="small" id="kbNote">Click the correct note on the keyboard, or use Show answer. Audio mode can run without using the keyboard.</p></section>
 <section class="panel"><h2>3. Gospel & worship song library · 15 selections</h2><p class="hint">Choose a song and practice the same key and interval skills in its context. Traditional public-domain melodies have short playable exercises; contemporary selections provide original skill drills rather than reproducing copyrighted melodies or arrangements.</p><div id="songs" class="songs"></div><div style="margin-top:14px" class="row"><button class="primary" id="songPractice">Practice selected song</button><button id="playPhrase">▶ Play practice phrase</button><button id="stopPhrase">Stop sound</button></div><div id="songInfo" class="feedback" style="margin-top:12px"></div></section>
 <section class="panel"><h2>4. Your progress</h2><p class="small">Accuracy is tracked separately for each key on this device, and saved in your browser when local storage is available.</p><div id="stats"></div><div class="row" style="margin-top:10px"><button id="clearStats">Reset saved progress</button></div></section>
 <p class="foot"><strong>Audio compatibility:</strong> Speech playback uses your device's built-in speech synthesis. Verbal-response mode uses browser speech recognition, which works best in supported browsers (typically Chrome or Edge) with microphone permission and an internet connection; some mobile browsers or locked/background screens may stop recognition or playback. Use Listen and Learn if voice recognition is unavailable. For safety, keep your attention on your surroundings when working outdoors. MIDI and live piano-microphone note detection are planned optional enhancements, not features of this version.</p></main>
@@ -11,16 +22,69 @@
 const KEYDATA=[['C',0,['C','D','E','F','G','A','B']],['G',7,['G','A','B','C','D','E','F♯']],['D',2,['D','E','F♯','G','A','B','C♯']],['A',9,['A','B','C♯','D','E','F♯','G♯']],['E',4,['E','F♯','G♯','A','B','C♯','D♯']],['B',11,['B','C♯','D♯','E','F♯','G♯','A♯']],['F♯',6,['F♯','G♯','A♯','B','C♯','D♯','E♯']],['D♭',1,['D♭','E♭','F','G♭','A♭','B♭','C']],['A♭',8,['A♭','B♭','C','D♭','E♭','F','G']],['E♭',3,['E♭','F','G','A♭','B♭','C','D']],['B♭',10,['B♭','C','D','E♭','F','G','A']],['F',5,['F','G','A','B♭','C','D','E']]];
 const chroma={'C':0,'C♯':1,'D♭':1,'D':2,'D♯':3,'E♭':3,'E':4,'E♯':5,'F':5,'F♯':6,'G♭':6,'G':7,'G♯':8,'A♭':8,'A':9,'A♯':10,'B♭':10,'B':11};
 const SONGS=[['Amazing Grace','Traditional hymn','beginner',true],['Oh, How I Love Jesus','Traditional hymn','beginner',true],['Here I Am to Worship','Tim Hughes','beginner',false],['As the Deer','Martin Nystrom','beginner',false],['Come On and Sing Hallelujah','Praise chorus • version to confirm','beginner',false],['For Your Glory','Tasha Cobbs Leonard','intermediate',false],['Jesus Is the Answer','Andraé Crouch','intermediate',false],['How Great Is Our God','Chris Tomlin','beginner',false],['I Love You Lord Today','Gospel favorite','beginner',false],['Shout to the Lord','Darlene Zschech','intermediate',false],['Because of Who You Are','Martha Munizzi','intermediate',false],['Way Maker','Sinach','beginner',false],['Blessed Assurance','Traditional hymn','beginner',true],['I Need You to Survive','Hezekiah Walker','intermediate',false],['Total Praise','Richard Smallwood','advanced',false]];
-const $=id=>document.getElementById(id);let selected=['C'],current=null,active=false,score=0,total=0,streak=0,deadline=0,clockHandle=null,audioHandle=null,recognition=null,phraseTimers=[],audioCtx=null,songIdx=0,questionNo=0,awaiting=false;let progress={};try{progress=JSON.parse(localStorage.getItem('gospelPianoProgressV2')||'{}')}catch{}
+const $=id=>document.getElementById(id);let selected=[],current=null,active=false,score=0,total=0,streak=0,deadline=0,clockHandle=null,audioHandle=null,recognition=null,phraseTimers=[],audioCtx=null,songIdx=0,questionNo=0,awaiting=false;let progress={};try{progress=JSON.parse(localStorage.getItem('gospelPianoProgressV2')||'{}')}catch{}
 const mode=()=> $('activity').value;const key=()=>KEYDATA.find(k=>k[0]===selected[Math.floor(Math.random()*selected.length)]);const pc=n=>(n+120)%12;const nameOf=(k,n)=>k[2].find(x=>chroma[x]===pc(n))||['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'][pc(n)];
-function renderKeys(){let m=$('keyMode').value; if(m==='single')selected=[selected[0]||'C'];if(m==='all')selected=KEYDATA.map(x=>x[0]);$('keyChips').innerHTML='';for(const k of KEYDATA){let b=document.createElement('button');b.className='chip'+(selected.includes(k[0])?' on':'');b.textContent=k[0];b.disabled=m==='all';b.setAttribute('aria-pressed',selected.includes(k[0]));b.onclick=()=>{if(m==='single')selected=[k[0]];else if(selected.includes(k[0])){if(selected.length>1)selected=selected.filter(x=>x!==k[0])}else selected.push(k[0]);renderKeys()};$('keyChips').append(b)}$('selectedKeys').textContent='Selected: '+selected.join(', ')+' major';}
+function renderKeys(){let m=$('keyMode').value; if(m==='single')selected=[selected[0]||'C'];if(m==='all')selected=KEYDATA.map(x=>x[0]);$('keyChips').innerHTML='';for(const k of KEYDATA){let b=document.createElement('button');b.className='chip'+(selected.includes(k[0])?' on':'');b.textContent=k[0];b.disabled=m==='all';b.setAttribute('aria-pressed',selected.includes(k[0]));b.onclick=()=>{if(active)stop();if(m==='single')selected=[k[0]];else if(selected.includes(k[0])){selected=selected.filter(x=>x!==k[0])}else selected.push(k[0]);renderKeys()};$('keyChips').append(b)}$('selectedKeys').textContent=selected.length?'Selected: '+selected.join(', ')+' major':'Selected: None. Click the major keys you want to practice.';const ready=selected.length>0;for(const id of ['start','next','songPractice','playPhrase'])$(id).disabled=!ready;refreshSessionSettings();if(ready&&!active&&$('status').textContent.startsWith('Choose your major keys'))status('Ready to practice.');}
 function renderSongs(){const box=$('songs');box.innerHTML='';SONGS.forEach((s,i)=>{const b=document.createElement('button');b.className='song'+(i===songIdx?' on':'');b.innerHTML='<strong></strong><span></span><div class="tag"></div>';b.querySelector('strong').textContent=(i+1)+'. '+s[0];b.querySelector('span').textContent=s[1];b.querySelector('.tag').textContent=s[2]+' · '+(s[3]?'traditional melody':'skill drills');b.onclick=()=>{songIdx=i;renderSongs();songDetails()};box.append(b)});songDetails()}
 function songDetails(){let s=SONGS[songIdx];$('songInfo').textContent=s[0]+': '+(s[3]?'Short public-domain melody demonstration available in your selected key.':'Practice original thirds, sixths and scale-degree drills in your selected key. Exact song melodies are not included.')+' Select “Practice selected song” to start.'}
-function drawKeyboard(){const kb=$('keyboard');kb.innerHTML='';let whiteNotes=[];for(let n=48;n<=83;n++)if(![1,3,6,8,10].includes(n%12))whiteNotes.push(n);let totalWhite=whiteNotes.length;for(let i=0;i<whiteNotes.length;i++){let n=whiteNotes[i],b=document.createElement('button');b.className='white';b.dataset.midi=n;b.textContent=['C','','D','','E','F','','G','','A','','B'][n%12]+(Math.floor(n/12)-1);b.title=b.textContent;b.onclick=()=>answerMidi(n);kb.append(b)}for(let n=49;n<=82;n++){if(![1,3,6,8,10].includes(n%12))continue;let preceding=whiteNotes.filter(w=>w<n).length;let b=document.createElement('button');b.className='black';b.dataset.midi=n;b.style.left=`calc(${preceding/totalWhite*100}% - ${100/totalWhite*.28}%)`;b.textContent=['','♯','','♯','','','♯','','♯','','♯',''][n%12];b.title='MIDI '+n;b.onclick=()=>answerMidi(n);kb.append(b)}}
+function drawKeyboard(){const kb=$('keyboard');kb.innerHTML='';let whiteNotes=[];for(let n=48;n<=83;n++)if(![1,3,6,8,10].includes(n%12))whiteNotes.push(n);let totalWhite=whiteNotes.length;for(let i=0;i<whiteNotes.length;i++){let n=whiteNotes[i],b=document.createElement('button');b.className='white';b.dataset.midi=n;b.textContent='';b.title=['C','','D','','E','F','','G','','A','','B'][n%12]+(Math.floor(n/12)-1);b.onclick=()=>answerMidi(n);kb.append(b)}for(let n=49;n<=82;n++){if(![1,3,6,8,10].includes(n%12))continue;let preceding=whiteNotes.filter(w=>w<n).length;let b=document.createElement('button');b.className='black';b.dataset.midi=n;b.style.left=`calc(${preceding/totalWhite*100}% - ${100/totalWhite*.28}%)`;b.textContent='';b.title='MIDI '+n;b.onclick=()=>answerMidi(n);kb.append(b)}}
 function updateStats(){ $('score').textContent=`Score: ${score} / ${total}`;$('streak').textContent=`Streak: ${streak}`;let html=KEYDATA.filter(k=>progress[k[0]]).map(k=>{let s=progress[k[0]];return `<span class="stat">${k[0]}: ${s.right}/${s.attempts} (${Math.round(s.right/s.attempts*100)}%)</span>`}).join('');$('stats').innerHTML=html||'<span class="small">No questions answered yet.</span>';try{localStorage.setItem('gospelPianoProgressV2',JSON.stringify(progress))}catch{}}
-// Balanced Nashville rounds: three independently shuffled sets of degrees 1–7 (21 questions).
-// Each group is shuffled independently; for multi-key practice, track each key separately.
-let degreeBags={};
+// Version 30: preserves selectable session size and fair coverage of all selected keys.
+// A cycle contains seven occurrences of each key; Nashville cycles also contain
+// every (key, degree) pair exactly once. Subsequent cycles may repeat only after completion.
+let degreeBags={},sessionLimit=7,sessionDeck=[];
+function shuffled(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function plannedCount(){
+ const value=$('roundLength').value;
+ if(value==='full')return selected.length*7;
+ if(value==='custom'){
+  const n=Math.floor(Number($('customRoundCount').value));
+  return Number.isFinite(n)?Math.max(1,Math.min(500,n)):selected.length*7;
+ }
+ return Math.max(1,Number(value)||selected.length*7);
+}
+function refreshSessionSettings(){
+ const n=selected.length,full=n*7,chosen=plannedCount();
+ if(n===0){$('coverageInfo').textContent='Choose at least one major key to begin practice. No keys have been selected.';if(!active){$('roundCount').textContent='Round: 0 / —';status('Choose your major keys, then select Start practice.')}return;}
+ $('customRoundBox').classList.toggle('hidden',$('roundLength').value!=='custom');
+ const isDegree=$('topic').value==='degree';
+ let note=isDegree?`Full Coverage: ${full} questions = ${n} selected ${n===1?'key':'keys'} × 7 Nashville numbers.`:`Balanced practice: ${full} questions = 7 questions per selected key; interval prompts vary.`;
+ if(isDegree){
+  if(chosen<full)note+=` With ${chosen} questions, some key-and-number combinations cannot be covered in one session.`;
+  else if(chosen===full)note+=' Every selected key and every Nashville number is covered exactly once.';
+  else note+=` Your ${chosen}-question session covers all combinations before repeating any.`;
+ }else note+=` Your session is set to ${chosen} questions.`;
+ note+=' Keys are distributed evenly; question order remains unpredictable.';
+ $('coverageInfo').textContent=note;
+ if(!active&&mode()!=='timed')$('roundCount').textContent=`Round: 0 / ${chosen}`;
+}
+function balancedOrder(keyNames,last){
+ const order=shuffled(keyNames);
+ if(order.length>1&&order[0]===last){
+  const other=1+Math.floor(Math.random()*(order.length-1));
+  [order[0],order[other]]=[order[other],order[0]];
+ }
+ return order;
+}
+function planQuestions(count,keyNames,topic){
+ const result=[];
+ let last=null;
+ while(result.length<count){
+  // New round-robin cycle: seven unique scale degrees for every selected key.
+  const bag={};
+  for(const k of keyNames)bag[k]=shuffled([0,1,2,3,4,5,6]);
+  for(let d=0;d<7&&result.length<count;d++){
+   const order=balancedOrder(keyNames,last);
+   for(const k of order){
+    if(result.length>=count)break;
+    result.push({key:k,degree:topic==='degree'?bag[k][d]:null});
+    last=k;
+   }
+  }
+ }
+ return result;
+}
+
 function nextDegreeIndex(keyName){
  let state=degreeBags[keyName];
  if(!state){state={cycle:0,bag:[]};degreeBags[keyName]=state;}
@@ -35,27 +99,27 @@ function nextDegreeIndex(keyName){
  }
  return state.bag.pop();
 }
-function createQuestion(){let k=key(),i=Math.floor(Math.random()*7),note=k[2][i],t=$('topic').value;if(t==='mix')t=['sixth','third','inverse','degree'][Math.floor(Math.random()*4)];if(t==='degree'){i=nextDegreeIndex(k[0]);note=k[2][i];}let q={key:k[0],topic:t,answer:'',text:'',explanation:'',pc:null,answerMidi:null};if(t==='sixth'){let a=k[2][(i+2)%7];q.text=`In the key of ${k[0]} major, what note is a sixth BELOW ${note}?`;q.answer=a;q.pc=chroma[a];q.answerMidi=null;q.explanation=`Find the third ABOVE ${note}: ${a}. The sixth below has the same note name (${a}) but is in a lower octave. The exact semitone distance depends on the notes; count six letter names downward.`}else if(t==='third'){let a=k[2][(i+2)%7];q.text=`In the key of ${k[0]} major, what note is a THIRD ABOVE ${note}?`;q.answer=a;q.pc=chroma[a];q.explanation=`Count three scale notes starting on ${note}: ${note}, ${k[2][(i+1)%7]}, ${a}.`}else if(t==='degree'){q.text=`In the key of ${k[0]} major, what note is scale degree ${i+1}?`;q.answer=note;q.pc=chroma[note];q.explanation=`The ${k[0]} major scale is ${k[2].join(' – ')}. Degree ${i+1} is ${note}.`}else{let a=[2,3,4,5,6,7][Math.floor(Math.random()*6)],b=9-a;q.text=`In the key of ${k[0]} major, which interval inverts a ${['','', 'second','third','fourth','fifth','sixth','seventh'][a]}?`;q.answer=['','','second','third','fourth','fifth','sixth','seventh'][b];q.explanation=`Inverted interval numbers add to 9: ${a} + ${b} = 9. This is an interval-name question, so no keyboard note is required.`}return q}
+function createQuestion(){let planned=sessionDeck[questionNo-1],k=(planned&&KEYDATA.find(x=>x[0]===planned.key))||key(),i=Math.floor(Math.random()*7),note=k[2][i],t=$('topic').value;if(t==='mix')t=['sixth','third','inverse','degree'][Math.floor(Math.random()*4)];if(t==='degree'){i=planned&&planned.degree!==null?planned.degree:nextDegreeIndex(k[0]);note=k[2][i];}let q={key:k[0],topic:t,answer:'',text:'',explanation:'',pc:null,answerMidi:null};if(t==='sixth'){let a=k[2][(i+2)%7];q.text=`In the key of ${k[0]} major, what note is a sixth BELOW ${note}?`;q.answer=a;q.pc=chroma[a];q.answerMidi=null;q.explanation=`Find the third ABOVE ${note}: ${a}. The sixth below has the same note name (${a}) but is in a lower octave. The exact semitone distance depends on the notes; count six letter names downward.`}else if(t==='third'){let a=k[2][(i+2)%7];q.text=`In the key of ${k[0]} major, what note is a THIRD ABOVE ${note}?`;q.answer=a;q.pc=chroma[a];q.explanation=`Count three scale notes starting on ${note}: ${note}, ${k[2][(i+1)%7]}, ${a}.`}else if(t==='degree'){q.text=`In the key of ${k[0]} major, what is the ${['first','second','third','fourth','fifth','sixth','seventh'][i]} note?`;q.answer=note;q.pc=chroma[note];q.explanation=`The ${k[0]} major scale is ${k[2].join(' – ')}. Degree ${i+1} is ${note}.`}else{let a=[2,3,4,5,6,7][Math.floor(Math.random()*6)],b=9-a;q.text=`In the key of ${k[0]} major, which interval inverts a ${['','', 'second','third','fourth','fifth','sixth','seventh'][a]}?`;q.answer=['','','second','third','fourth','fifth','sixth','seventh'][b];q.explanation=`Inverted interval numbers add to 9: ${a} + ${b} = 9. This is an interval-name question, so no keyboard note is required.`}return q}
 function setFeedback(t){$('feedback').textContent=t}function status(t){$('status').textContent=t}function highlight(pcValue,good){document.querySelectorAll('[data-midi]').forEach(b=>{b.classList.remove('active','error');if(pcValue!==null&&Number(b.dataset.midi)%12===pcValue)b.classList.add(good?'active':'error')})}
 let keyboardAdvanceTimer=null,keyboardThinkTimer=null,roundResults=[],sessionToken=0,questionToken=0;
 const isRound=()=>mode()==='keyboard'||mode()==='audio';
 const isListen=()=>mode()==='audio'&&$('audioMode').value==='listen';
 function clearKeyboardTimers(){clearTimeout(keyboardAdvanceTimer);clearTimeout(keyboardThinkTimer);keyboardAdvanceTimer=keyboardThinkTimer=null}
-function roundProgress(){if(isRound()){$('roundCount').textContent=`Round: ${Math.min(questionNo,21)} / 21`;$('progress').style.width=(Math.min(questionNo,21)/21*100)+'%'}else $('roundCount').textContent='Timed challenge'}
+function roundProgress(){if(isRound()){$('roundCount').textContent=`Round: ${Math.min(questionNo,sessionLimit)} / ${sessionLimit}`;$('progress').style.width=(Math.min(questionNo,sessionLimit)/sessionLimit*100)+'%'}else $('roundCount').textContent='Timed challenge'}
 function roundSummary(){const answered=roundResults.filter(r=>r.ok!==null),right=answered.filter(r=>r.ok).length,missed=answered.length-right,pct=answered.length?Math.round(right/answered.length*100):0;
  const counts={};for(const r of answered){const v=counts[r.topic]||(counts[r.topic]={right:0,missed:0});if(r.ok)v.right++;else v.missed++}
  const labels={sixth:'sixths below',third:'thirds above',degree:'Nashville numbers',inverse:'interval inversions'};
  const focus=Object.entries(counts).filter(([,v])=>v.missed).sort((a,b)=>b[1].missed-a[1].missed).map(([k])=>labels[k]||k);
  const advice=focus.length?'For your next practice, focus on '+focus.slice(0,2).join(' and ')+'.':'Excellent consistency. Continue with a new key or mixed intervals.';
- return {text:isListen()?'All three sections are complete. You finished the full 21-question Listen and Learn practice. No accuracy score is assigned.':`All three sections are complete. You answered ${right} correctly and missed ${missed} out of 21 questions. Your accuracy is ${pct} percent. ${advice}`,right,missed,pct,advice};}
-async function finishRound(token=sessionToken){if(!active||token!==sessionToken)return;const summary=roundSummary();active=false;awaiting=false;clearKeyboardTimers();stopSpeech();$('roundReport').classList.remove('hidden');$('roundReport').textContent=summary.text;$('question').textContent='All three sections complete — 21 questions';setFeedback(summary.text);status('Round complete. Select Start practice for another round.');$('progress').style.width='100%';$('roundCount').textContent='Round: 21 / 21';active=true;await say(summary.text);if(token===sessionToken)active=false;}
+ return {text:isListen()?`Session complete. You finished all ${sessionLimit} Listen and Learn questions. No accuracy score is assigned.`:`Session complete. You answered ${right} correctly and missed ${missed} out of ${sessionLimit} questions${roundResults.some(r=>r.ok===null)?' (some questions were revealed rather than scored)':''}. Your accuracy on scored questions is ${pct} percent. ${advice}`,right,missed,pct,advice};}
+async function finishRound(token=sessionToken){if(!active||token!==sessionToken)return;const summary=roundSummary();active=false;awaiting=false;clearKeyboardTimers();stopSpeech();$('roundReport').classList.remove('hidden');$('roundReport').textContent=summary.text;$('question').textContent=`Session complete — ${sessionLimit} questions`;setFeedback(summary.text);status('Round complete. Select Start practice for another round.');$('progress').style.width='100%';$('roundCount').textContent=`Round: ${sessionLimit} / ${sessionLimit}`;active=true;await say(summary.text);if(token===sessionToken)active=false;}
 async function afterQuestion(n,token=sessionToken){if(!active||token!==sessionToken||n!==questionNo)return;
- if(isRound()&&n===21){await finishRound(token);return}
+ if(isRound()&&n===sessionLimit){await finishRound(token);return}
  if(mode()==='keyboard'){await wait(500);if(active&&token===sessionToken&&n===questionNo)nextQuestion()}
 }
-function nextQuestion(){clearKeyboardTimers();if(!active)return;if(isRound()&&questionNo>=21){finishRound();return}questionNo++;questionToken++;current=createQuestion();awaiting=mode()!=='keyboard';roundProgress();$('question').textContent=`#${questionNo} · ${current.text}`;setFeedback('Think through the interval. Use the keyboard or answer aloud, depending on your practice mode.');highlight(null,true);if(mode()==='audio')runAudioQuestion();else speakQuestion()}
-async function speakQuestion(){if(!current||!active)return;const n=questionNo,token=sessionToken;stopSpeech();await say(current.text);if(!active||token!==sessionToken||n!==questionNo||mode()!=='keyboard')return;awaiting=true;status('Choose the answer before the thinking time expires.');keyboardThinkTimer=setTimeout(()=>{keyboardThinkTimer=null;if(active&&awaiting&&questionNo===n&&token===sessionToken)record(false)},Number($('keyboardPause').value)*1000)}
-async function announceFeedback(ok,answer){if(!$('spokenFeedback').checked||!active||mode()==='audio')return;if('speechSynthesis' in window)speechSynthesis.cancel();const msg=ok===true?'Correct! Well done.':ok===false?'Not quite. The correct answer is '+answer+'.':'The answer is '+answer+'.';await say(msg)}
+function nextQuestion(){clearKeyboardTimers();if(!active)return;if(isRound()&&questionNo>=sessionLimit){finishRound();return}questionNo++;questionToken++;current=createQuestion();awaiting=mode()!=='keyboard';roundProgress();$('question').textContent=`#${questionNo} · ${current.text}`;setFeedback('Think through the interval. Use the keyboard or answer aloud, depending on your practice mode.');highlight(null,true);if(mode()==='audio')runAudioQuestion();else speakQuestion()}
+async function speakQuestion(){if(!current||!active)return;const n=questionNo,token=sessionToken;stopSpeech();await say(current.text,true);if(!active||token!==sessionToken||n!==questionNo||mode()!=='keyboard')return;awaiting=true;status('Choose the answer before the thinking time expires.');keyboardThinkTimer=setTimeout(()=>{keyboardThinkTimer=null;if(active&&awaiting&&questionNo===n&&token===sessionToken)record(false)},Number($('keyboardPause').value)*1000)}
+async function announceFeedback(ok,answer){if(!$('spokenFeedback').checked||!active||mode()==='audio')return;cancelVoice();const msg=ok===true?'Correct! Well done.':ok===false?'Not quite. The correct answer is '+answer+'.':'The answer is '+answer+'.';await say(msg)}
 async function record(ok){if(!awaiting||!current)return;awaiting=false;clearTimeout(keyboardThinkTimer);keyboardThinkTimer=null;const n=questionNo,token=sessionToken;
  if(ok!==null){total++;if(ok){score++;streak++}else streak=0;let p=progress[current.key]||{right:0,attempts:0};p.attempts++;if(ok)p.right++;progress[current.key]=p;updateStats()}
  if(isRound())roundResults.push({ok,topic:current.topic,key:current.key});
@@ -63,13 +127,14 @@ async function record(ok){if(!awaiting||!current)return;awaiting=false;clearTime
  if(mode()==='keyboard'){
   await announceFeedback(ok,current.answer);
   if(!active||token!==sessionToken||n!==questionNo)return;
-  if(n%7===0&&n<21){const pct=total?Math.round(score/total*100):0;await say(`Section ${n/7} of 3 completed. ${score} correct, ${total-score} missed so far. Accuracy ${pct} percent.`)}
+  if(n%7===0&&n<sessionLimit){const pct=total?Math.round(score/total*100):0;await say(`Section ${n/7} of ${Math.ceil(sessionLimit/7)} completed. ${score} correct, ${total-score} missed so far. Accuracy ${pct} percent.`)}
   await afterQuestion(n,token);
  }
 }
 function answerMidi(n){playNote(n,1.8);if(!active||!awaiting||mode()==='audio')return;if(current.pc===null){setFeedback('This question asks for an interval name. Select “Show answer” to review it.');return}let ok=n%12===current.pc;record(ok);if(mode()==='timed'&&active){const completedQuestion=questionNo;setTimeout(()=>{if(active&&questionNo===completedQuestion)nextQuestion()},1500)}}
 function showAnswer(){if(!current)return;if(awaiting)record(null);else setFeedback(`Answer: ${current.answer}. ${current.explanation}`)}
-function stopSpeech(){if('speechSynthesis'in window)speechSynthesis.cancel();if(recognition){try{recognition.abort()}catch{}recognition=null}if(audioHandle){clearTimeout(audioHandle);audioHandle=null}}
+function cancelVoice(){speechSequence++;if('speechSynthesis' in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
+function stopSpeech(){cancelVoice();if(recognition){try{recognition.abort()}catch{}recognition=null}if(audioHandle){clearTimeout(audioHandle);audioHandle=null}}
 function chooseVoice(){
  const voices=speechSynthesis.getVoices().filter(v=>/^en[-_]US$/i.test(v.lang));
  const sel=$('speakingVoice'), chosen=sel.value;
@@ -89,9 +154,9 @@ function speakUtterance(t,preRoll=false){
     ||voices.find(v=>/^en[-_]US$/i.test(v.lang)&&/david/i.test(v.name))
     ||voices.find(v=>/^en[-_]US$/i.test(v.lang));
   if(chosen)u.voice=chosen;
-  u.lang='en-US';u.rate=preRoll?1:.86;
+  u.lang='en-US';u.rate=preRoll?1.2:.86;
   u.pitch=preRoll?1:({natural:1,deep:.82,deeper:.74,verydeep:.68,extra:.48})[$('voiceDepth').value];
-  u.volume=preRoll?0.02:1;
+  u.volume=preRoll?0.001:1;
   let done=false, watchdog=null;
   const finish=(ok)=>{if(done)return;done=true;clearTimeout(watchdog);resolve(ok)};
   u.onend=()=>finish(true);u.onerror=()=>finish(false);
@@ -102,14 +167,44 @@ function speakUtterance(t,preRoll=false){
   }catch(e){finish(false)}
  })
 }
-async function say(t){
- if(!active)return;
- // Prime the speech engine so it does not swallow the first consonant of a question.
- if(!speechSynthesis.speaking&&!speechSynthesis.pending){
+// Some Windows audio drivers suppress the beginning of new speech after going idle.
+// An optional, soft NONVERBAL wake-up tone engages the speaker hardware while an
+// almost-inaudible utterance prepares the Windows speech engine. No question
+// number, prefix word, or extra spoken phrase is added to the actual question.
+async function wakeWindowsSpeaker(){
+ const Audio=window.AudioContext||window.webkitAudioContext;
+ if(!Audio)return;
+ try{
+  if(!speechWakeContext)speechWakeContext=new Audio();
+  const ctx=speechWakeContext;
+  if(ctx.state==='suspended')await ctx.resume();
+  const start=ctx.currentTime+.015;
+  const osc=ctx.createOscillator(),gain=ctx.createGain();
+  osc.type='sine';osc.frequency.setValueAtTime(620,start);
+  gain.gain.setValueAtTime(0.0001,start);
+  gain.gain.exponentialRampToValueAtTime(0.028,start+.075);
+  gain.gain.setValueAtTime(0.028,start+.51);
+  gain.gain.exponentialRampToValueAtTime(0.0001,start+.69);
+  osc.connect(gain);gain.connect(ctx.destination);
+  osc.start(start);osc.stop(start+.71);
+  osc.onended=()=>{try{osc.disconnect();gain.disconnect()}catch{}};
+ }catch(e){/* Speech still works if the browser prevents audio priming. */}
+}
+let speechWakeContext=null;
+async function say(t,protectOpening=false){
+ if(!active||!('speechSynthesis' in window))return;
+ const sequence=speechSequence;
+ if(protectOpening&&$('windowsSpeechFix').checked){
+  // Prime voice and speaker at the same time. The cue is not a spoken word.
+  const primer=speakUtterance('Ready.',true);
+  const hardware=wakeWindowsSpeaker();
+  await Promise.all([primer,hardware,new Promise(r=>setTimeout(r,780))]);
+ }else if(!$('windowsSpeechFix').checked&&!speechSynthesis.speaking&&!speechSynthesis.pending){
+  // Preserve existing phone/other-device speech preparation.
   await speakUtterance('.',true);
-  await new Promise(r=>setTimeout(r,350));
+  if(active&&sequence===speechSequence)await new Promise(r=>setTimeout(r,350));
  }
- if(active)await speakUtterance(t,false);
+ if(active&&sequence===speechSequence)await speakUtterance(t,false);
 }
 function wait(ms){return new Promise(resolve=>{audioHandle=setTimeout(()=>{audioHandle=null;resolve()},ms)})}
 function speechAnswerMatch(heard,answer){let norm=s=>s.toLowerCase().replace(/sharp/g,'#').replace(/flat/g,'b').replace(/[^a-z#]/g,'').replace(/^([a-g])natural$/,'$1');let h=norm(heard),a=norm(answer);if(a==='second'||a==='third'||a==='fourth'||a==='fifth'||a==='sixth'||a==='seventh')return h.includes(a)||h.includes({'second':'2nd','third':'3rd','fourth':'4th','fifth':'5th','sixth':'6th','seventh':'7th'}[a]);return h===a||h.split(/(?:note|is)/).pop()===a}
@@ -120,7 +215,7 @@ async function runAudioQuestion(){
  await wait(350);
  if(!active||questionNo!==n)return;
  status('Speaking question: '+q.text);
- await say(q.text);
+ await say(q.text,true);
  if(!active||questionNo!==n)return;
  let heard=null;
  if($('audioMode').value==='voice'){
@@ -144,13 +239,13 @@ async function runAudioQuestion(){
  }
  if(!active||questionNo!==n)return;
  status('Audio question completed. '+answer);
- if(n%7===0&&n<21){if(isListen())await say(`Section ${n/7} of 3 completed.`);else await say(`Section ${n/7} of 3 completed. ${score} correct and ${total-score} missed so far. Accuracy ${total?Math.round(score/total*100):0} percent.`)}
- if(n===21){await finishRound();return}
+ if(n%7===0&&n<sessionLimit){if(isListen())await say(`Section ${n/7} of ${Math.ceil(sessionLimit/7)} completed.`);else await say(`Section ${n/7} of ${Math.ceil(sessionLimit/7)} completed. ${score} correct and ${total-score} missed so far. Accuracy ${total?Math.round(score/total*100):0} percent.`)}
+ if(n===sessionLimit){await finishRound();return}
  if($('autoNext').checked){await wait(2000);if(active&&questionNo===n)nextQuestion();}
 }
 function stop(){sessionToken++;clearKeyboardTimers();active=false;awaiting=false;clearInterval(clockHandle);clockHandle=null;stopSpeech();status('Practice stopped.');$('clock').textContent='Time: —'}
-function start(){stop();active=true;degreeBags={};score=total=streak=questionNo=0;roundResults=[];$('roundReport').classList.add('hidden');$('roundReport').textContent='';updateStats();status('Practice running.');if(mode()==='timed'){let seconds=Number($('duration').value);deadline=Date.now()+seconds*1000;$('clock').textContent='Time: '+seconds+'s';clockHandle=setInterval(()=>{let left=Math.max(0,Math.ceil((deadline-Date.now())/1000));$('clock').textContent='Time: '+left+'s';$('progress').style.width=(100*(1-left/seconds))+'%';if(left<=0){let result=`Time is up! You answered ${score} of ${total} correctly.`;stop();setFeedback(result);$('question').textContent='Challenge complete.'}},150)}else{$('progress').style.width='0%'}nextQuestion()}
-function updateMode(){let a=mode();$('timerBox').classList.toggle('hidden',a!=='timed');$('audioBox').classList.toggle('hidden',a!=='audio');$('pauseBox').classList.toggle('hidden',a!=='audio');$('keyboardPauseBox').classList.toggle('hidden',a!=='keyboard');$('kbNote').textContent=a==='audio'?'Audio mode can be used without touching the piano. Keep this page active for best results.':'Click a piano key to answer note questions; interval-name questions use Show answer.';if(active)stop()}
+function start(){if(selected.length===0){status('Choose at least one major key before starting.');return;}stop();active=true;degreeBags={};sessionLimit=plannedCount();sessionDeck=planQuestions(mode()==='timed'?Math.max(500,sessionLimit):sessionLimit,selected.slice(),$('topic').value);score=total=streak=questionNo=0;roundResults=[];$('roundReport').classList.add('hidden');$('roundReport').textContent='';updateStats();status('Practice running.');if(mode()==='timed'){let seconds=Number($('duration').value);deadline=Date.now()+seconds*1000;$('clock').textContent='Time: '+seconds+'s';clockHandle=setInterval(()=>{let left=Math.max(0,Math.ceil((deadline-Date.now())/1000));$('clock').textContent='Time: '+left+'s';$('progress').style.width=(100*(1-left/seconds))+'%';if(left<=0){let result=`Time is up! You answered ${score} of ${total} correctly.`;stop();setFeedback(result);$('question').textContent='Challenge complete.'}},150)}else{$('progress').style.width='0%'}nextQuestion()}
+function updateMode(){let a=mode();$('timerBox').classList.toggle('hidden',a!=='timed');$('audioBox').classList.toggle('hidden',a!=='audio');$('pauseBox').classList.toggle('hidden',a!=='audio');$('keyboardPauseBox').classList.toggle('hidden',a!=='keyboard');$('roundLengthBox').classList.toggle('hidden',a==='timed');$('customRoundBox').classList.toggle('hidden',a==='timed'||$('roundLength').value!=='custom');$('kbNote').textContent=a==='audio'?'Audio mode can be used without touching the piano. Keep this page active for best results.':'Click a piano key to answer note questions; interval-name questions use Show answer.';if(active)stop();refreshSessionSettings()}
 function audio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}
 function playNote(midi,len=.4,when=0){try{
 let c=audio(),t=c.currentTime+when,f=440*Math.pow(2,(midi-69)/12);
@@ -171,18 +266,21 @@ g.gain.exponentialRampToValueAtTime(.00001,t+duration);
 o.connect(g);g.connect(master);o.start(t);o.stop(t+duration+.02);
 });
 }catch{}}
-function playSongPhrase(){stopPhrase();let s=SONGS[songIdx],k=KEYDATA.find(x=>x[0]===selected[0]);let degreeSeq=s[0]==='Amazing Grace'?[5,1,3,1,3,2,1]:s[0]==='Oh, How I Love Jesus'?[5,1,1,2,3,3,2,1]:s[0]==='Blessed Assurance'?[5,1,3,5,4,3,2,1]:[1,3,5,3,2,4,6,5,3,1];let notes=degreeSeq.map(d=>60+pc(chroma[k[2][d-1]]-0));notes.forEach((n,i)=>playNote(n,.45,i*.52));status(s[3]?'Playing a short traditional melody exercise.':'Playing an original scale-degree practice phrase (not the song melody).')}
+function playSongPhrase(){if(selected.length===0){status('Choose at least one major key before playing a phrase.');return;}stopPhrase();let s=SONGS[songIdx],k=KEYDATA.find(x=>x[0]===selected[0]);let degreeSeq=s[0]==='Amazing Grace'?[5,1,3,1,3,2,1]:s[0]==='Oh, How I Love Jesus'?[5,1,1,2,3,3,2,1]:s[0]==='Blessed Assurance'?[5,1,3,5,4,3,2,1]:[1,3,5,3,2,4,6,5,3,1];let notes=degreeSeq.map(d=>60+pc(chroma[k[2][d-1]]-0));notes.forEach((n,i)=>playNote(n,.45,i*.52));status(s[3]?'Playing a short traditional melody exercise.':'Playing an original scale-degree practice phrase (not the song melody).')}
 function stopPhrase(){try{if(audioCtx)audioCtx.suspend()}catch{}phraseTimers.forEach(clearTimeout);phraseTimers=[]}
-$('keyMode').onchange=()=>{selected=$('keyMode').value==='single'?[selected[0]]:$('keyMode').value==='custom'?[selected[0],'G'].filter((v,i,a)=>a.indexOf(v)===i):KEYDATA.map(x=>x[0]);renderKeys()};$('activity').onchange=updateMode;$('start').onclick=start;$('stop').onclick=stop;$('next').onclick=()=>{if(!active){start();return}if(awaiting&&isRound()&&!isListen()){record(false);return}nextQuestion()};$('reveal').onclick=showAnswer;$('repeat').onclick=()=>{if(current){if('speechSynthesis' in window)speechSynthesis.cancel();say(current.text)}};$('songPractice').onclick=()=>{status('Song practice: '+SONGS[songIdx][0]+'. '+(SONGS[songIdx][3]?'Try the playable phrase, then the interval questions.':'Use the interval questions in your selected key.'));$('topic').value='mix';$('activity').value='keyboard';updateMode();start()};$('playPhrase').onclick=playSongPhrase;$('stopPhrase').onclick=stopPhrase;$('clearStats').onclick=()=>{if(confirm('Reset all saved accuracy statistics?')){progress={};updateStats()}};document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode()==='audio')status('Keep the screen active; background audio and microphone may be paused by your device.')});renderKeys();renderSongs();drawKeyboard();updateStats();updateMode();
+$('keyMode').onchange=()=>{if(active)stop();selected=$('keyMode').value==='single'?[selected[0]]:$('keyMode').value==='custom'?selected.slice():KEYDATA.map(x=>x[0]);renderKeys()};$('activity').onchange=updateMode;$('roundLength').onchange=()=>{if(active)stop();refreshSessionSettings()};$('customRoundCount').oninput=()=>{if(active)stop();refreshSessionSettings()};$('topic').onchange=()=>{if(active)stop();refreshSessionSettings()};$('start').onclick=start;$('stop').onclick=stop;$('next').onclick=()=>{if(!active){start();return}if(awaiting&&isRound()&&!isListen()){record(false);return}nextQuestion()};$('reveal').onclick=showAnswer;$('repeat').onclick=()=>{if(current){cancelVoice();say(current.text,true)}};$('songPractice').onclick=()=>{status('Song practice: '+SONGS[songIdx][0]+'. '+(SONGS[songIdx][3]?'Try the playable phrase, then the interval questions.':'Use the interval questions in your selected key.'));$('topic').value='mix';$('activity').value='keyboard';updateMode();start()};$('playPhrase').onclick=playSongPhrase;$('stopPhrase').onclick=stopPhrase;$('clearStats').onclick=()=>{if(confirm('Reset all saved accuracy statistics?')){progress={};updateStats()}};document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode()==='audio')status('Keep the screen active; background audio and microphone may be paused by your device.')});renderKeys();renderSongs();drawKeyboard();updateStats();updateMode();
+// Enable the speech-start protection only on Windows; do not alter Android/iOS playback.
+$('windowsSpeechFix').checked=/Windows/i.test(navigator.userAgent);
 if('speechSynthesis' in window){
  chooseVoice();speechSynthesis.addEventListener('voiceschanged',chooseVoice);
  setTimeout(chooseVoice,500);
 }
 $('testVoice').onclick=()=>{
  if(!('speechSynthesis' in window)){status('Speech synthesis is unavailable on this browser.');return}
- speechSynthesis.cancel();
+ cancelVoice();
  const wasActive=active;active=true;
- say('Welcome to Gospel Piano Trainer. Let us practice together.').then(()=>{if(!wasActive&&questionNo===0)active=false});
+ const sample='In the key of C major, what is the fifth note?';
+ say(sample,true).then(()=>{if(!wasActive&&questionNo===0)active=false});
 };
 })();
 </script></body></html>
